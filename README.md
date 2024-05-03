@@ -31,8 +31,8 @@ class TextInput(PlayGame):
 Polimorfizmas leidžia vienodai tvarkyti vaikinių klasių objektus per bendrą sąsają *(PlayGame)*. Abi vaikinės klasės gali įgyvendinti abstraktų metodą skirtingai, kaip parodyta skirtingomis metodo „_read_from_file" implementacijomis vaikinėse klasėse „MultipleChoice" ir „TextInput".
 
 
-#### Enkapsuliacija
-Enkapsuliacija padeda paslėpti objekto vidinę būseną nuo išorinio pasaulio ir leidžia prie jos prieiti tik per gerai apibrėžtus sąsajas. Programos kode panaudojau *„Protected"*  (apsaugotus) atributus, žymimus su *„ _"* ženklu, padėtu prieš metodo pavadinimą. Ketinau naudoti „Private" (privačius) atributus, žymimus *„ __",* tačiau man nepavyko to įgyvendinti naudojant abstraktų metodą. 
+#### Inkapsuliacija
+Inkapsuliacija padeda paslėpti objekto vidinę būseną nuo išorinio pasaulio ir leidžia prie jos prieiti tik per gerai apibrėžtus sąsajas. Programos kode panaudojau *„Protected"*  (apsaugotus) atributus, žymimus su *„ _"* ženklu, padėtu prieš metodo pavadinimą. Ketinau naudoti „Private" (privačius) atributus, žymimus *„ __",* tačiau man nepavyko to įgyvendinti naudojant abstraktų metodą. 
 
 ######  Konkretus pavyzdys iš kodo: 
 ```
@@ -46,8 +46,8 @@ class PlayGame(ABC):
     def _read_from_file(self, filename):
         pass
 ```
-Šioje dalyje *„_filename"*, *„_level_score"* ir *„_questions"* yra enkapsuliuotos *„PlayGame"* klasėje. Prie jų galima prieiti ir juos keisti tik klasės viduje arba jos vaikinėse klasėse dėl vieno pabraukimo prefikso.
-*„_read_from_file"* metodas yra pateikiamas kaip abstraktus, nurodant, kad jį privalo įgyvendinti vaikinės klasės. Taip nuo išorės paslėpiamios visos klausimų skaitymo iš failo įgyvendinimo detalės. Be to, kode enkapsuliuojami metodai *„_play_multiple_choice"* ir *„_play_text_input"*, taip paslėpiamas žaidimo, su skirtingo tipo klausimais, detalės.
+Šioje dalyje *„_filename"*, *„_level_score"* ir *„_questions"* yra inkapsuliuotos *„PlayGame"* klasėje. Prie jų galima prieiti ir juos keisti tik klasės viduje arba jos vaikinėse klasėse dėl vieno pabraukimo prefikso.
+*„_read_from_file"* metodas yra pateikiamas kaip abstraktus, nurodant, kad jį privalo įgyvendinti vaikinės klasės. Taip nuo išorės paslėpiamios visos klausimų skaitymo iš failo įgyvendinimo detalės. Be to, kode inkapsuliuojami metodai *„_play_multiple_choice"* ir *„_play_text_input"*, taip paslėpiamas žaidimo, su skirtingo tipo klausimais, detalės.
 
 #### Abstrakcija.
  Panaudodami abstrakciją kode galime paslėpti sudėtingas implementacijas ir atskleisti tik esmines objekto savybes. Tai leidžia sutelkti dėmesį į tai, ką objektas daro, o ne tai, kaip jis tai daro. 
