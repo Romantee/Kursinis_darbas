@@ -2,11 +2,11 @@
 
 ## 1. Įvadas
 
-Žaidimas, pavadinimu „Country Guesser" patikrina žaidėjo žinias geografijos srityje.  Paleidęs žaidimą, žaidėjas pirmiausia turi įvesti savo vardą. Žaidimo esmė labai paprasta. Žaidėjas turi atspėti valstybių pavadinimus pagal duotas užuominas. Klausimai ir atsakymai pateikiami anglų kalba. Šiuo metu žaidime sukurti du lygiai. Pirmąjame lygyje žaidėjas gauna užuominą ir tris variantus, jis turi įvesti skaičių to varianto, kuris jo nuomone yra teisingas. Antrajame lygyje žaidėjas pats turi sugalvoti atsakymą ir įvesti valstybės pavadinimą. Atsakius neteisingai ekrane išvedamas teisingas atsakymas. Po kiekvieno lygio, ekrane išvedami tame lygyje surinkti taškai, o pasibaigus žaidimui, taškai susumuojami ir išvedamas galutinis rezultatas, kuris kartu su žaidėjo vardu įrašomas į atskirą failą. 
+Žaidimas, pavadinimu „Country Guesser" patikrina žaidėjo žinias geografijos srityje.  Paleidęs žaidimą, žaidėjas pirmiausia turi įvesti savo vardą. Žaidimo esmė labai paprasta. Žaidėjas turi atspėti valstybių pavadinimus pagal duotas užuominas. Klausimai ir atsakymai pateikiami anglų kalba. Šiuo metu žaidime sukurti du lygiai. Pirmajame lygyje žaidėjas gauna užuominą ir tris variantus, jis turi įvesti skaičių to varianto, kuris jo nuomone yra teisingas. Antrajame lygyje žaidėjas pats turi sugalvoti atsakymą ir įvesti valstybės pavadinimą. Atsakius neteisingai ekrane išvedamas teisingas atsakymas. Po kiekvieno lygio, ekrane išvedami tame lygyje surinkti taškai, o pasibaigus žaidimui, taškai susumuojami ir išvedamas galutinis rezultatas, kuris kartu su žaidėjo vardu įrašomas į atskirą failą. 
 
 ## 2. Kodo analizė
 
-##### Programos kodas pagrįstas tokiomis sampratomis, kaip polimorfizmas, enkapsuliacija, abstrakcija bei paveldėjimas.
+##### Programos kodas pagrįstas tokiomis sampratomis, kaip polimorfizmas, inkapsuliacija, abstrakcija bei paveldėjimas.
 
 #### Polimorfizmas: 
 
@@ -80,22 +80,6 @@ class TextInput(PlayGame):
 ```
 Abstrakcija šiame kode leidžia apibrėžti bendrą sąsają arba interface'ą (tėvinę *„PlayGame“* klasę), skirtą sąveikai su skirtingų tipų žaidimų lygiais (*„MultipleChoice“* ir *„TextInput“* vaikinėimis klasėmis), kartu paslepiant kiekvienam žaidimo tipui būdingą įgyvendinimo informaciją. 
 .
-```
-class CountryGuessGame:
-    def __init__(self):
-        self._levels = []
-        self._total_score = 0
-
-    def add_level(self, filename, level_type):
-        if level_type == "multiple_choice":
-            level = MultipleChoice(filename)
-        elif level_type == "text_input":
-            level = TextInput(filename)
-        else:
-            raise ValueError("Invalid level type")
-        self._levels.append(level)
-```
-
 
 #### Paveldėjimas (inheritance) 
 
@@ -112,7 +96,7 @@ Kode panaudoti dizaino modeliai:
   - Factory Method Pattern (Fabrikavimo Metodas)
   - Template Method Pattern (Šablono Modelis)
   
-#### Factory Method Pattern (Fabrikavimo Metodas)
+#### Factory Method Pattern (fabrikavimo Metodas)
 
 Šis šablonas kode naudojamas *„CountryGuessGame"* klasėje, *„add_level metode"*. Šablonas veikia kaip gamyklinis, sukurdamas žaidimo lygius pagal nurodytą lygio tipą (*„multiple_choice“* arba *„text_input“*). 
 Metodas apima du parametrus: *„filename"* (failo pavadinimą) ir *„level_type"* (lygio tipą). Remiantis nurodytu lygio tipu, nusprendžiama, kurį konkretų žaidimo lygį sukurti. Jei *„level_type"* yra *„MultipleChoice"*, sukuriamas lygis su trimis atsakymo variantais. Jei *„level_type"* yra *"text_input"*, sukuriamas lygis be atsakymo variantų.
@@ -145,7 +129,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-#### Template Method Pattern (Šablono Modelis) 
+#### Template Method Pattern (šablono modelis) 
 Template metodas naudojamas norint sukurti tėvinės klasės algoritmo griaučius, kuriuos gali paveldėti vaikinės klasės, tačiau kartu perrašyti kai kuriuos algoritmo žingsnius nekeičiant jo struktūros.
 
 Kode Template metodas įgyvendinamas *„PlayGame"* klasėje. Ši klasė apibrėžia abstraktų metodą *„_read_from_file"*, skirtą vaikinėms klasėms *(„multiple_choice“ arba „text_input“)*, kad galėtų skaityti klausimus ir atsakymus iš failo.  Apibrėždama jį kaip abstraktų, tėvinė klasė užtikrina, kad visi poklasiai juos įgyvendintų:
